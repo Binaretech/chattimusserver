@@ -4,6 +4,11 @@ import (
 	"github.com/spf13/viper"
 )
 
+var Config *viper.Viper
+
 func InitConfig() {
-	viper.New().AutomaticEnv()
+	Config = viper.New()
+	Config.AutomaticEnv()
+
+	Config.SetDefault("SERVER_PORT", 80)
 }

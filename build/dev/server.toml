@@ -2,9 +2,9 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-cmd = "go build -o ./tmp/main ./cmd/server"
-bin = "tmp/main"
-full_bin = "./tmp/main"
+cmd = "go build -o ./tmp/server ./cmd/server"
+bin = "tmp/server"
+full_bin = "./tmp/server"
 include_ext = ["go"]
 exclude_unchanged = true
 log = "air.log"

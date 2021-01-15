@@ -6,5 +6,6 @@ import (
 )
 
 func main() {
+	config.InitConfig()
 	server.Server()
 }
