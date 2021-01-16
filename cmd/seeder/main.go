@@ -1,0 +1,3 @@
+package seeder
+
+func main() {}
