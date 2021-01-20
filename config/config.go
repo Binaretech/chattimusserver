@@ -1,14 +1,28 @@
 package config
 
 import (
+	"bytes"
+	"io/ioutil"
+	"os"
+	"path"
+
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
-var Config *viper.Viper
-
 func InitConfig() {
-	Config = viper.New()
-	Config.AutomaticEnv()
+	data, _ := ioutil.ReadFile(envDir())
 
-	Config.SetDefault("SERVER_PORT", 80)
+	viper.SetConfigType("env")
+
+	if err := viper.ReadConfig(bytes.NewBuffer(data)); err != nil {
+		logrus.Fatalf("Fatal error config file: %s \n", err)
+	}
+
+	viper.SetDefault("SERVER_PORT", 80)
+}
+
+func envDir() string {
+	dir, _ := os.Getwd()
+	return path.Join(dir, ".env")
 }
